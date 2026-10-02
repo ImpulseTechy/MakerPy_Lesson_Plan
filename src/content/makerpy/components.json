@@ -1,0 +1,36 @@
+{
+  "groups": [
+    { "id": "board", "title": "The board" },
+    { "id": "onboard", "title": "Onboard components (already wired)" },
+    { "id": "external", "title": "External components (connected with jumper wires or plugs)" },
+    { "id": "tool", "title": "Tools and accessories" }
+  ],
+  "items": [
+    { "id": "makerpy-board", "group": "board", "name": "MakerPy board", "detail": "Raspberry Pi Pico W on the MakerPy PCB", "pins": "—", "sessions": [9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32] },
+    { "id": "pico-led", "group": "onboard", "name": "Pico W onboard LED", "detail": "Small green LED on the Pico W module", "pins": "Pin(\"LED\")", "sessions": [9] },
+    { "id": "rgb-led", "group": "onboard", "name": "RGB LED", "detail": "With 100 Ω resistors on the PCB", "pins": "GPIO 18 (R), 19 (G), 20 (B)", "sessions": [10,11,12,13,14,17,20,24,27,28] },
+    { "id": "buttons", "group": "onboard", "name": "Push buttons ×3", "detail": "10 kΩ pull-ups on the PCB, active-LOW", "pins": "GPIO 4, 5, 6", "sessions": [11,12,15,20] },
+    { "id": "buzzer", "group": "onboard", "name": "Buzzer", "detail": "Passive, active-LOW", "pins": "GPIO 7", "sessions": [12,13,14,20,24] },
+    { "id": "lm35", "group": "onboard", "name": "LM35 temperature sensor", "detail": "10 mV per °C", "pins": "GPIO 26 (ADC0)", "sessions": [13,17,20,22,25,28,30] },
+    { "id": "ldr", "group": "onboard", "name": "LDR light sensor", "detail": "With 4.7 kΩ resistor to GND; more light = higher reading", "pins": "GPIO 27 (ADC1)", "sessions": [14,17,18,20,28] },
+    { "id": "servo-headers", "group": "onboard", "name": "Servo headers J1–J3", "detail": "5 V, signal, GND", "pins": "GPIO 8, 9, 10", "sessions": [15,19,20] },
+    { "id": "motor-driver", "group": "onboard", "name": "TB6612FNG motor driver", "detail": "Drives two DC motors on J5 and J6; needs the 9 V adapter", "pins": "GPIO 11–17", "sessions": [16,25,26,27] },
+    { "id": "j7-header", "group": "onboard", "name": "J7 analog header", "detail": "3.3 V, signal, GND; nothing connected onboard", "pins": "GPIO 28 (ADC2)", "sessions": [19] },
+    { "id": "servo", "group": "external", "name": "Servo motor (SG90 type)", "detail": "Plugs into a servo header", "pins": "J3 / J2 / J1", "sessions": [15,19,20] },
+    { "id": "dc-motors", "group": "external", "name": "DC motors ×2", "detail": "Screw into motor terminals J5 (M_1) and J6 (M_2)", "pins": "via TB6612FNG", "sessions": [16,25,26,27] },
+    { "id": "potentiometer", "group": "external", "name": "Potentiometer", "detail": "With a 3-pin lead for the J7 header", "pins": "GPIO 28", "sessions": [19] },
+    { "id": "neopixel", "group": "external", "name": "NeoPixel ring (12 LEDs)", "detail": "WS2812B; DIN, 5 V, GND to the pin extender", "pins": "GPIO 3", "sessions": [18,19,29] },
+    { "id": "lcd", "group": "external", "name": "I2C LCD 16×2", "detail": "PCF8574 backpack, usually address 0x27", "pins": "GPIO 0 (SDA), GPIO 1 (SCL)", "sessions": [22,23,28,30] },
+    { "id": "hc-sr04", "group": "external", "name": "HC-SR04 ultrasonic sensor", "detail": "Echo needs a 1 kΩ / 2 kΩ divider (or use the 3.3 V HC-SR04P)", "pins": "GPIO 21 (Trig), GPIO 22 (Echo)", "sessions": [23,26,28] },
+    { "id": "ir-sensor", "group": "external", "name": "IR obstacle sensor", "detail": "Digital output; power from 3.3 V", "pins": "GPIO 2", "sessions": [24,29] },
+    { "id": "breadboard", "group": "external", "name": "Breadboard", "detail": "For external circuits", "pins": "—", "sessions": [21,22,23,24,28,31] },
+    { "id": "jumper-wires", "group": "external", "name": "Jumper wires", "detail": "Male–female and male–male", "pins": "—", "sessions": [18,19,21,22,23,24,26,28,29,31] },
+    { "id": "loose-parts", "group": "external", "name": "LEDs, resistors, buttons", "detail": "Loose parts for breadboard circuits", "pins": "Free pins: GPIO 0–3, 21, 22", "sessions": [21,31] },
+    { "id": "fan", "group": "external", "name": "Fan blade", "detail": "Fits a DC motor shaft", "pins": "—", "sessions": [25] },
+    { "id": "chassis", "group": "external", "name": "Robot chassis", "detail": "Two-wheel chassis for the robot lessons", "pins": "—", "sessions": [26,27] },
+    { "id": "usb", "group": "tool", "name": "Micro-USB data cable", "detail": "Must be a data cable, not charge-only", "pins": "—", "sessions": [9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32] },
+    { "id": "adapter-9v", "group": "tool", "name": "9 V DC adapter", "detail": "Powers the motors", "pins": "J4 barrel jack", "sessions": [16,25,26,27] },
+    { "id": "laptop", "group": "tool", "name": "Laptop with Chrome", "detail": "Runs Wokwi and MicroLab", "pins": "—", "sessions": [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32] },
+    { "id": "phone-torch", "group": "tool", "name": "Phone torch", "detail": "Bright light source for light tests", "pins": "—", "sessions": [14] }
+  ]
+}

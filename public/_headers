@@ -1,0 +1,6 @@
+# Cloudflare Pages headers. The site is private (Cloudflare Access), so keep it out of search engines.
+/*
+  X-Robots-Tag: noindex, nofollow
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: same-origin

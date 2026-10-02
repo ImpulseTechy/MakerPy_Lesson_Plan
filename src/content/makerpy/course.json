@@ -1,0 +1,16 @@
+{
+  "id": "makerpy",
+  "title": "MakerPy",
+  "subtitle": "Electronics and MicroPython on the MakerPy board",
+  "board": "Raspberry Pi Pico W on the MakerPy board (RP_Pi_DevBoard Rev 1.0)",
+  "platform": "MicroLab (getmicrolab.com)",
+  "language": "MicroPython",
+  "sessionMinutes": 55,
+  "batch": "5 students, live online",
+  "sessionCount": 32,
+  "phases": [
+    { "number": 1, "title": "Wokwi Simulation", "sessions": [1, 8], "where": "Wokwi in the browser", "summary": "Students learn the basics in a free browser simulator before touching hardware." },
+    { "number": 2, "title": "MakerPy Board", "sessions": [9, 20], "where": "MakerPy board + MicroLab", "summary": "Students program the real board, using the components already wired on it." },
+    { "number": 3, "title": "External Components", "sessions": [21, 32], "where": "Kit box + breadboard", "summary": "Students wire external parts with jumper wires and build complete systems." }
+  ]
+}

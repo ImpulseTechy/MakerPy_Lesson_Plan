@@ -1,0 +1,6 @@
+{
+  "name": "BigBoT Teacher Hub",
+  "brand": "BigBoT",
+  "tagline": "Teaching guides for BigBoT online robotics classes",
+  "courses": ["makerpy"]
+}

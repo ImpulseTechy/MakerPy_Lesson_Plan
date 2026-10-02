@@ -1,0 +1,40 @@
+{
+  "source": "RP_Pi_DevBoard Rev 1.0 schematic, Raspberry Pi Pico W",
+  "pins": [
+    { "gpio": 0,  "pin": 1,  "use": "I2C LCD SDA", "kind": "external", "where": "Pin extender", "sessions": [22, 23, 28, 30], "note": "Free on the PCB" },
+    { "gpio": 1,  "pin": 2,  "use": "I2C LCD SCL", "kind": "external", "where": "Pin extender", "sessions": [22, 23, 28, 30], "note": "Free on the PCB" },
+    { "gpio": 2,  "pin": 4,  "use": "IR sensor OUT", "kind": "external", "where": "Pin extender", "sessions": [24, 29], "note": "Power the IR module from 3.3 V" },
+    { "gpio": 3,  "pin": 5,  "use": "NeoPixel ring DIN", "kind": "external", "where": "Pin extender", "sessions": [18, 19, 29], "note": "Ring powered from 5 V" },
+    { "gpio": 4,  "pin": 6,  "use": "Button 1 (PB_01)", "kind": "onboard", "where": "Onboard, 10 kΩ pull-up", "sessions": [11, 12, 15, 20], "note": "Active-LOW: value() == 0 when pressed" },
+    { "gpio": 5,  "pin": 7,  "use": "Button 2 (PB_02)", "kind": "onboard", "where": "Onboard, 10 kΩ pull-up", "sessions": [11, 12, 15, 20], "note": "Active-LOW" },
+    { "gpio": 6,  "pin": 9,  "use": "Button 3 (PB_03)", "kind": "onboard", "where": "Onboard, 10 kΩ pull-up", "sessions": [11, 12, 15, 20], "note": "Active-LOW" },
+    { "gpio": 7,  "pin": 10, "use": "Buzzer (BZR)", "kind": "onboard", "where": "Onboard SP1, other side to 3.3 V", "sessions": [12, 13, 14, 20, 24], "note": "Active-LOW: set HIGH for silence" },
+    { "gpio": 8,  "pin": 11, "use": "Servo 1 (SERVO_S01)", "kind": "onboard", "where": "J3 header (5 V, signal, GND)", "sessions": [15, 19, 20], "note": "" },
+    { "gpio": 9,  "pin": 12, "use": "Servo 2 (SERVO_S02)", "kind": "onboard", "where": "J2 header", "sessions": [15], "note": "" },
+    { "gpio": 10, "pin": 14, "use": "Servo 3 (SERVO_S03)", "kind": "onboard", "where": "J1 header", "sessions": [15], "note": "" },
+    { "gpio": 11, "pin": 15, "use": "Motor A speed (PWMA)", "kind": "onboard", "where": "TB6612FNG → J5 (M_1)", "sessions": [16, 25, 26, 27], "note": "" },
+    { "gpio": 12, "pin": 16, "use": "Motor A AIN2", "kind": "onboard", "where": "TB6612FNG", "sessions": [16, 25, 26, 27], "note": "Order: AIN2 is GPIO 12" },
+    { "gpio": 13, "pin": 17, "use": "Motor A AIN1", "kind": "onboard", "where": "TB6612FNG", "sessions": [16, 25, 26, 27], "note": "Order: AIN1 is GPIO 13" },
+    { "gpio": 14, "pin": 19, "use": "Motor driver STBY", "kind": "onboard", "where": "TB6612FNG", "sessions": [16, 25, 26, 27], "note": "Must be HIGH or motors won't run" },
+    { "gpio": 15, "pin": 20, "use": "Motor B speed (PWMB)", "kind": "onboard", "where": "TB6612FNG → J6 (M_2)", "sessions": [16, 26, 27], "note": "" },
+    { "gpio": 16, "pin": 21, "use": "Motor B BIN2", "kind": "onboard", "where": "TB6612FNG", "sessions": [16, 26, 27], "note": "Order: BIN2 is GPIO 16" },
+    { "gpio": 17, "pin": 22, "use": "Motor B BIN1", "kind": "onboard", "where": "TB6612FNG", "sessions": [16, 26, 27], "note": "Order: BIN1 is GPIO 17" },
+    { "gpio": 18, "pin": 24, "use": "RGB LED red", "kind": "onboard", "where": "Onboard RGB LED, 100 Ω", "sessions": [10, 11, 12, 13, 14, 17, 20, 24, 27, 28], "note": "" },
+    { "gpio": 19, "pin": 25, "use": "RGB LED green", "kind": "onboard", "where": "Onboard RGB LED, 100 Ω", "sessions": [10, 11, 12, 13, 14, 17, 20, 24, 27, 28], "note": "" },
+    { "gpio": 20, "pin": 26, "use": "RGB LED blue", "kind": "onboard", "where": "Onboard RGB LED, 100 Ω", "sessions": [10, 11, 12, 13, 14, 17, 20, 24, 27, 28], "note": "" },
+    { "gpio": 21, "pin": 27, "use": "HC-SR04 Trig", "kind": "external", "where": "Pin extender", "sessions": [23, 26, 28], "note": "" },
+    { "gpio": 22, "pin": 29, "use": "HC-SR04 Echo", "kind": "external", "where": "Pin extender, through 1 kΩ / 2 kΩ divider", "sessions": [23, 26, 28], "note": "Echo is 5 V: divider required" },
+    { "gpio": 26, "pin": 31, "use": "LM35 temperature (TEMP_ADC)", "kind": "onboard", "where": "Onboard U4", "sessions": [13, 17, 20, 22, 25, 28, 30], "note": "LM35 runs from 3.3 V (rated 4 V min): check readings" },
+    { "gpio": 27, "pin": 32, "use": "LDR light (LDR_ADC)", "kind": "onboard", "where": "Onboard U5 + 4.7 kΩ to GND", "sessions": [14, 17, 18, 20, 28], "note": "More light = HIGHER reading" },
+    { "gpio": 28, "pin": 34, "use": "J7 analog header (MIC_ADC)", "kind": "onboard", "where": "J7 header only (3.3 V, signal, GND)", "sessions": [19], "note": "Nothing onboard: plug in a pot or mic module" }
+  ],
+  "special": [
+    { "label": "Onboard LED", "use": "Pico W LED on the Wi-Fi chip", "note": "Use Pin(\"LED\", Pin.OUT), not GPIO 25" },
+    { "label": "RUN", "use": "Reset button", "note": "" }
+  ],
+  "power": [
+    "9 V DC jack (J4) → L7805 → 5 V → AMS1117-3.3 → 3.3 V; three LEDs show 9 V, 5 V and 3.3 V",
+    "TB6612FNG motor driver: VM = 9 V (motors need the 9 V adapter), VCC = 3.3 V",
+    "Servo headers J1–J3 run from the 5 V rail"
+  ]
+}

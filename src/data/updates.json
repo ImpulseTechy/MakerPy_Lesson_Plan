@@ -1,0 +1,6 @@
+[
+  { "date": "2026-10-02", "title": "Sessions 1 and 2 are fully written", "body": "Session 1 (Intro to Pico W and MicroPython: Wokwi setup, Hello World, variables, onboard LED blink) and Session 2 (external LED, resistors and a traffic light), from the class decks. New animated simulators: blink, LED circuit lab and traffic light. Code still needs a check in Wokwi before teaching." },
+  { "date": "2026-10-02", "title": "Teacher Hub launched", "body": "Home page, MakerPy course roadmap, Pin Map, Components, Code library, Troubleshooting and the Teaching Online Guide are live." },
+  { "date": "2026-10-02", "title": "Session 14 is the first fully written lesson", "body": "LDR Light Sensor: real-life project, components, guided build, challenge, quiz and teacher notes. Other sessions show the curriculum outline until they are written." },
+  { "date": "2026-10-02", "title": "Pins corrected against the board schematic", "body": "The board is a Pico W (onboard LED is Pin(\"LED\")). NeoPixel moved to GPIO 3, HC-SR04 moved to GPIO 21/22 with an Echo divider, LDR logic flipped (more light = higher number), exact motor driver pin order added." }
+]

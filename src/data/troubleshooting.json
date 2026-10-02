@@ -1,0 +1,14 @@
+[
+  { "area": "Connection", "symptom": "MicroLab can't find the board", "cause": "Charge-only USB cable, or a browser other than Chrome / Edge", "fix": "Try another cable and use Chrome. Close other tabs or apps using the serial port." },
+  { "area": "Connection", "symptom": "Board not found even after changing the cable", "cause": "MicroPython firmware missing or the wrong firmware", "fix": "Hold BOOTSEL while plugging in, then flash the Raspberry Pi Pico W MicroPython firmware (not the plain Pico one)." },
+  { "area": "Connection", "symptom": "\"Device busy\" or the serial monitor stays empty", "cause": "Another tab or program has the port open", "fix": "Close other MicroLab or serial tabs, unplug for 5 seconds, reconnect." },
+  { "area": "Code", "symptom": "Onboard LED doesn't blink with Pin(25)", "cause": "On the Pico W the LED is on the Wi-Fi chip", "fix": "Use Pin(\"LED\", Pin.OUT)." },
+  { "area": "Code", "symptom": "NameError or SyntaxError", "cause": "Typo, missing colon or wrong indentation", "fix": "Read the line number in the error, then read that line aloud together." },
+  { "area": "Code", "symptom": "ImportError for a library (e.g. pico_i2c_lcd)", "cause": "Library file not on the board", "fix": "Upload the .py library files with the MicroLab file manager, then run again." },
+  { "area": "Sensors", "symptom": "Light readings: Dark and Bright are swapped", "cause": "Code copied from the internet, where the LDR is wired the other way", "fix": "On MakerPy, more light = higher number. Check DARK is the smaller threshold." },
+  { "area": "Sensors", "symptom": "Temperature reading looks wrong", "cause": "LM35 is powered from 3.3 V on this board", "fix": "Compare with a thermometer and add an offset in code if needed." },
+  { "area": "Motors", "symptom": "Motors don't spin", "cause": "STBY is LOW or the 9 V adapter isn't plugged in", "fix": "Set Pin(14) HIGH and plug in the 9 V adapter." },
+  { "area": "Motors", "symptom": "One motor spins backwards", "cause": "IN1 and IN2 swapped in code, or motor wires reversed", "fix": "AIN1 = GPIO 13, AIN2 = GPIO 12, BIN1 = GPIO 17, BIN2 = GPIO 16. Or swap that motor's two wires." },
+  { "area": "Display", "symptom": "LCD lights up but shows nothing", "cause": "Contrast not set, or wrong I2C address", "fix": "Turn the small blue contrast screw on the backpack. Run an I2C scan; the address is usually 0x27 or 0x3F." },
+  { "area": "Sensors", "symptom": "HC-SR04 always reads 0 or a huge number", "cause": "Trig and Echo swapped, or the divider is wired wrong", "fix": "Trig → GPIO 21, Echo → divider → GPIO 22. Check GND is shared." }
+]
