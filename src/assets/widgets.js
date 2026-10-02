@@ -210,4 +210,122 @@
     play.textContent = running ? "Pause" : "Play";
     show(); start();
   });
+  function lamp(root, key, on) {
+    q(root, "lamp-" + key).setAttribute("opacity", on ? "1" : "0");
+    q(root, "halo-" + key).setAttribute("opacity", on ? "1" : "0");
+  }
+  /** Press-and-hold on a button element: mouse, touch, and Space/Enter on the keyboard. */
+  function holdable(el, down, up) {
+    var held = false;
+    var press = function (e) { if (e) e.preventDefault(); if (!held) { held = true; el.classList.add("down"); down(); } };
+    var release = function () { if (held) { held = false; el.classList.remove("down"); up(); } };
+    el.addEventListener("pointerdown", function (e) { try { el.setPointerCapture(e.pointerId); } catch (err) {} press(e); });
+    el.addEventListener("pointerup", release);
+    el.addEventListener("pointercancel", release);
+    el.addEventListener("lostpointercapture", release);
+    el.addEventListener("keydown", function (e) { if ((e.key === " " || e.key === "Enter") && !e.repeat) press(e); });
+    el.addEventListener("keyup", function (e) { if (e.key === " " || e.key === "Enter") release(); });
+    el.addEventListener("blur", release);
+  }
+  function chipGroup(root, attr, onPick) {
+    var btns = root.querySelectorAll("[" + attr + "]");
+    Array.prototype.forEach.call(btns, function (b) {
+      b.addEventListener("click", function () {
+        Array.prototype.forEach.call(btns, function (o) { o.setAttribute("aria-pressed", String(o === b)); });
+        onPick(b.getAttribute(attr));
+      });
+    });
+  }
+  function showCode(root, mode) {
+    Array.prototype.forEach.call(root.querySelectorAll("[data-code]"), function (el) { el.hidden = el.getAttribute("data-code") !== mode; });
+  }
+  function codeLines(root, mode, list) {
+    var box = root.querySelector('[data-code="' + mode + '"]');
+    Array.prototype.forEach.call(root.querySelectorAll(".sim-code .ln"), function (el) {
+      el.classList.toggle("on", box.contains(el) && list.indexOf(Number(el.getAttribute("data-line"))) !== -1);
+    });
+  }
+
+  /* ---------- button: pull-down (active HIGH), pull-up (active LOW) and toggle ---------- */
+  Array.prototype.forEach.call(document.querySelectorAll('[data-widget="button"]'), function (box) {
+    var mode = "down", pressed = false, ledOn = false;
+    var render = function () {
+      var activeLow = mode !== "down";
+      var val = pressed ? (activeLow ? 0 : 1) : (activeLow ? 1 : 0);
+      if (mode !== "toggle") ledOn = pressed;
+      q(box, "val").textContent = val;
+      q(box, "state").textContent = (pressed ? "Pressed" : "Released") + " → LED " + (ledOn ? "on" : "off");
+      q(box, "top").textContent = activeLow ? "GND" : "3.3 V";
+      q(box, "bottom").textContent = activeLow ? "3.3 V" : "GND";
+      q(box, "pull").textContent = activeLow ? "pull-up" : "pull-down";
+      var c = q(box, "contact").querySelector("line");
+      c.setAttribute("x2", pressed ? "80" : "78");
+      c.setAttribute("y2", pressed ? "62" : "48");
+      q(box, "cap").setAttribute("transform", pressed ? "translate(0 8)" : "");
+      lamp(box, "l", ledOn);
+      if (mode === "toggle") codeLines(box, mode, pressed ? [2, 3, 4, 5, 6] : [1, 2]);
+      else codeLines(box, mode, pressed ? [2, 3] : [4, 5]);
+    };
+    chipGroup(box, "data-mode", function (m) { mode = m; ledOn = false; showCode(box, m); render(); });
+    holdable(box.querySelector("[data-push]"),
+      function () { pressed = true; if (mode === "toggle") ledOn = !ledOn; render(); },
+      function () { pressed = false; render(); });
+    render();
+  });
+
+  /* ---------- crossing: button -> green for 10 s -> back to red ---------- */
+  Array.prototype.forEach.call(document.querySelectorAll('[data-widget="crossing"]'), function (box) {
+    var fast = box.querySelector("[data-fast]");
+    var left = 0, timer = null;
+    var idle = function () {
+      lamp(box, "r", true); lamp(box, "g", false);
+      q(box, "scene").textContent = "Red: wait";
+      q(box, "left").textContent = "Press the button to cross";
+      lines(box, [0, 1, 7]);
+    };
+    var tick = function () {
+      if (left <= 0) {
+        lines(box, [5, 6]);
+        timer = setTimeout(function () { timer = null; idle(); }, 400);
+        return;
+      }
+      q(box, "left").textContent = left + " s left to cross";
+      left--;
+      timer = setTimeout(tick, fast.checked ? 333 : 1000);
+    };
+    holdable(box.querySelector("[data-push]"), function () {
+      if (timer) return;                         // like the real code: busy in sleep(10)
+      lamp(box, "r", false); lamp(box, "g", true);
+      q(box, "scene").textContent = "Green: cross now";
+      lines(box, [1, 2, 3, 4]);
+      left = 10; tick();
+    }, function () {});
+    idle();
+  });
+
+  /* ---------- pot: knob -> voltage -> read_u16() -> LEDs ---------- */
+  Array.prototype.forEach.call(document.querySelectorAll('[data-widget="pot"]'), function (box) {
+    var input = box.querySelector('[data-in="pot"]');
+    var mode = "zones";
+    var update = function () {
+      var raw = Number(input.value);
+      var v = raw / 65535 * 3.3;
+      q(box, "adc").textContent = raw.toLocaleString("en-US");
+      q(box, "v").textContent = v.toFixed(2) + " V";
+      q(box, "pct").textContent = Math.round(raw * 100 / 65535) + " %";
+      q(box, "knob").setAttribute("transform", "rotate(" + (raw / 65535 * 270 - 135).toFixed(1) + " 120 80)");
+      q(box, "mark").style.left = (raw / 65535 * 100) + "%";
+      if (mode === "zones") {
+        var zone = raw <= 21845 ? 0 : raw <= 43690 ? 1 : 2;
+        lamp(box, "g", zone === 0); lamp(box, "y", zone === 1); lamp(box, "r", zone === 2);
+        codeLines(box, mode, [[0, 1], [2, 3], [4, 5]][zone]);
+      } else {
+        lamp(box, "g", raw > 0); lamp(box, "y", raw > 21845); lamp(box, "r", raw > 43690);
+        codeLines(box, mode, [0, 1, 2]);
+      }
+    };
+    chipGroup(box, "data-mode", function (m) { mode = m; showCode(box, m); update(); });
+    input.addEventListener("input", update);
+    update();
+  });
 })();

@@ -87,7 +87,7 @@ HTML strings are trusted author content.
 | `components` | — | Renders the lesson's `components` table + external parts note |
 | `figure` | `html`, `caption?` | Inline SVG diagram (use CSS variables for colors) |
 | `image` | `src`, `alt`, `caption?` | File in `src/assets/img/`; `alt` is required |
-| `widget` | `name`, `led?` | `ldr-lab`, `light-test`, `blink` (add `led: "external"` for an LED on GP2), `led-circuit`, `traffic-light` (in `src/assets/widgets.js`) |
+| `widget` | `name`, `led?` | `ldr-lab`, `light-test`, `blink` (add `led: "external"` for an LED on GP2), `led-circuit`, `traffic-light`, `button`, `crossing`, `pot` (in `src/assets/widgets.js`) |
 | `details` | `summary`, `html` | Collapsible hint |
 | `table` | `head[]`, `rows[][]` | |
 | `copytext` | `label`, `text` | Copyable plain text (parent messages) |

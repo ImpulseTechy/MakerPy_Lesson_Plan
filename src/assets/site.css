@@ -49,6 +49,7 @@ h1,h2,h3{font-family:var(--display); line-height:1.2; margin:0; font-weight:500;
 h2{font-size:1.9rem; font-weight:500}
 h3{font-size:1.3rem; font-weight:600; margin-top:1.6rem}
 p{margin:.6rem 0}
+code, pre{font-variant-ligatures:none}
 code{font-family:var(--mono); font-size:.88em; background:var(--teal-soft); padding:.05em .35em; border-radius:5px}
 .sr{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap}
 .skip{position:absolute; left:-999px; top:0; background:var(--teal); color:var(--teal-ink); padding:.5rem 1rem; z-index:50}
@@ -246,6 +247,12 @@ tr:target td{background:var(--amber-soft)}
 .sim .toggles label{display:flex; gap:.5rem; align-items:center; cursor:pointer}
 .sim [data-out="why"]{min-height:3.2em; color:var(--muted)}
 .sim svg [data-out="bulb"], .sim svg [data-out="halo"], .sim svg [data-out^="lamp-"], .sim svg [data-out^="halo-"], .sim svg [data-out="smoke"]{transition:opacity .08s}
+.sim .push{width:5.2rem; height:5.2rem; border-radius:50%; border:3px solid var(--ink); background:var(--brand); color:#fff; font:700 .85rem var(--body); cursor:pointer; box-shadow:0 6px 0 var(--ink); transition:transform .06s, box-shadow .06s; touch-action:none; user-select:none; -webkit-user-select:none}
+.sim .push.down{transform:translateY(5px); box-shadow:0 1px 0 var(--ink)}
+.zonebar{position:relative; display:grid; grid-template-columns:1fr 1fr 1fr; height:12px; border-radius:99px; overflow:visible; margin:.8rem 0 .2rem}
+.zonebar span:nth-child(1){background:#3DDC6A; border-radius:99px 0 0 99px} .zonebar span:nth-child(2){background:#FFC83D} .zonebar span:nth-child(3){background:#FF5A4F; border-radius:0 99px 99px 0}
+.zonebar i{position:absolute; top:-5px; width:4px; height:22px; margin-left:-2px; background:var(--ink); border-radius:2px}
+.zonelbl{display:flex; justify-content:space-between; font-family:var(--mono)}
 .flow{opacity:0}
 .flow.run{opacity:1; animation:flow 1s linear infinite}
 @keyframes flow{to{stroke-dashoffset:-32}}
