@@ -135,6 +135,9 @@ if any lesson mentions a GPIO number that is not in it.
 
 ## Deploying
 
+Vercel: `vercel.json` sets build command `npm run build`, output directory `dist` and the noindex/security headers
+(the same as `public/_headers`). Vercel has no Cloudflare Access: protect the site with Vercel Deployment Protection.
+
 Cloudflare Pages: build command `npm run build`, output directory `dist`, environment variable `NODE_VERSION=22`.
 Access is controlled in Cloudflare Zero Trust (Access application on the site's domain, policy = allowed teacher emails,
 login method = one-time PIN). `public/_headers` adds noindex and security headers.
